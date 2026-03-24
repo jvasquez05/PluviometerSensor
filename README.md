@@ -1,31 +1,25 @@
 # PluviometerSensor
+Lightweight library for the Proagro Technology pluviometer, designed for agricultural dataloggers.
+It allows counting tips from the tipping bucket and converting them to millimeters of precipitation using a configurable factor (MME).
 
-Librería ligera para el pluviómetro de **Proagro Technology**, diseñada para dataloggers agrícolas.  
-Permite contar tips del balancín y convertirlos a milímetros de precipitación usando un **factor configurable (MME)**.
+✨ Features
+- Tip counter with ISR (handleIRQ()).
+- Conversion from tips to mm (tipsToMM()).
+- Configurable MME factor (setMME() / getMME()).
+- Optimized for low memory usage, suitable for resource-intensive projects.
 
----
-
-## ✨ Características
-- Contador de tips con ISR (`handleIRQ()`).
-- Conversión de tips a mm (`tipsToMM()`).
-- Factor MME configurable (`setMME()` / `getMME()`).
-- Optimizada para bajo consumo de memoria, apta para proyectos con uso intensivo de recursos.
-
----
-
-## 📦 Instalación
-
-### Opción 1: Desde GitHub
-1. Descarga el archivo ZIP desde la sección **Releases**.
-2. En Arduino IDE:  
-   `Sketch → Include Library → Add .ZIP Library…`  
-   Selecciona el ZIP descargado.
-
-### Opción 2: Clonando el repositorio
-```bash
+📦 Installation
+Option 1: From GitHub
+- Download the ZIP file from the Releases section.
+- In Arduino IDE:
+Sketch → Include Library → Add .ZIP Library…
+Select the downloaded ZIP.
+Option 2: Clone the repository
 git clone https://github.com/jvasquez05/PluviometerSensor/releases/tag/v1.0.0
 
-🚀 Uso básico
+
+
+🚀 Basic Usage
 #include <PluviometerSensor.h>
 
 const int RAIN_PIN = 2;
@@ -43,7 +37,7 @@ void loop() {
   Serial.print("Tips: ");
   Serial.println(tips);
 
-  Serial.print("Precipitación mm: ");
+  Serial.print("Precipitation mm: ");
   Serial.println(mm);
 
   delay(1000);
@@ -51,20 +45,21 @@ void loop() {
 
 
 
-🔧 Opciones avanzadas
-El ajuste dinámico de calibración (MME) está disponible únicamente cuando el sensor se utiliza dentro de un datalogger Proagro Technology, donde forma parte de la lógica de configuración vía Bluetooth junto con otros comandos especializados.
-Este ajuste no está incluido en la librería independiente, que se limita a la lectura y conversión del sensor.
-⚠️ Nota: El uso de estos comandos es exclusivo para usuarios avanzados que operen el datalogger completo.
-El usuario normal de la librería no necesita realizar ninguna configuración adicional.
+🔧 Advanced Options
+Dynamic calibration adjustment (MME) is only available when the sensor is used within a Proagro Technology datalogger, where it is part of the Bluetooth configuration logic together with other specialized commands.
+This adjustment is not included in the standalone library, which is limited to sensor reading and conversion.
+⚠️ Note: These commands are intended exclusively for advanced users operating the full datalogger.
+Regular library users do not need to perform any additional configuration.
 
-## 📖 Notas
-- El valor base de calibración (`MME = 0.2794f`) corresponde al pluviómetro de referencia Proagro Technology, **basado en la hoja de datos del pluviómetro Argent DataSystem**.  
-- La librería está diseñada para ser ligera y enfocada únicamente en el funcionamiento del pluviómetro.
+📖 Notes
+- The base calibration value (MME = 0.2794f) corresponds to the Proagro Technology reference pluviometer, based on the Argent DataSystem pluviometer datasheet.
+- The library is designed to be lightweight and focused solely on pluviometer operation.
 
-🏷️ Versión
-v1.0.0 – Primera versión oficial.
-📧 Autor
+🏷️ Version
+v1.0.0 – First official release.
+
+📧 Author
 Proagro Technology
-Desarrollada por Jhonny Vásquez Jiménez
+Developed by Jhonny Vásquez Jiménez
 
 
