@@ -4,6 +4,7 @@ PluviometerSensor::PluviometerSensor(uint8_t pin, float mmeDefault) {
   _pin = pin;
   _tips = 0;
   _mme = mmeDefault;
+  _lastInterrupt = 0;
 }
 
 void PluviometerSensor::begin() {
@@ -12,7 +13,11 @@ void PluviometerSensor::begin() {
 }
 
 void PluviometerSensor::handleIRQ() {
-  _tips++;
+  unsigned long now = millis();
+  if (now - _lastInterrupt > 200) {   // 200 ms de debounce
+    _tips++;
+    _lastInterrupt = now;
+  }
 }
 
 unsigned int PluviometerSensor::getTips() {
