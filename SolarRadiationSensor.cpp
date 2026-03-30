@@ -9,7 +9,8 @@ PluviometerSensor::PluviometerSensor(uint8_t pin, float mmeDefault) {
 
 void PluviometerSensor::begin() {
   pinMode(_pin, INPUT_PULLUP);
-  // La ISR se asigna en el sketch principal con attachInterrupt()
+  _tips = 0;
+  _lastInterrupt = millis(); // evita registrar un pulso espurio al inicio
 }
 
 void PluviometerSensor::handleIRQ() {
