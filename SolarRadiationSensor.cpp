@@ -9,8 +9,9 @@ PluviometerSensor::PluviometerSensor(uint8_t pin, float mmeDefault) {
 
 void PluviometerSensor::begin() {
   pinMode(_pin, INPUT_PULLUP);
+  digitalWrite(_pin, LOW);     // fuerza estado inicial → evita tip falso tras reset
   _tips = 0;
-  _lastInterrupt = millis(); // evita registrar un pulso espurio al inicio
+  _lastInterrupt = millis();   // evita registrar un pulso espurio al inicio
 }
 
 void PluviometerSensor::handleIRQ() {
